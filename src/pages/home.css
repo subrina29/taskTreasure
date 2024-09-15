@@ -1,0 +1,32 @@
+.home {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.task-completed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  height: 100%;
+}
+
+.task-completed > div {
+  display: flex;
+  gap: 10px;
+  height: 300px;
+  width: 300px;
+  border-radius: 1e5px;
+  align-items: center;
+  justify-content: center;
+  background-color: #95a5a6;
+}
+
+@media (max-width: 330px) {
+  .task-completed > div {
+    height: 200px;
+    width: 200px;
+  }
+}

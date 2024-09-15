@@ -1,60 +1,26 @@
+import { Button } from "@nextui-org/button";
+import "./index.css";
 import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
-
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
-import DefaultLayout from "@/layouts/default";
+import { useNavigate } from "react-router-dom";
 
 export default function IndexPage() {
+  const navigate = useNavigate();
   return (
-    <DefaultLayout>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="inline-block max-w-lg text-center justify-center">
-          <span className={title()}>Make&nbsp;</span>
-          <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-          <br />
-          <span className={title()}>
-            websites regardless of your design experience.
-          </span>
-          <div className={subtitle({ class: "mt-4" })}>
-            Beautiful, fast and modern React UI library.
-          </div>
-        </div>
-
-        <div className="flex gap-3">
-          <Link
-            isExternal
-            className={buttonStyles({
-              color: "primary",
-              radius: "full",
-              variant: "shadow",
-            })}
-            href={siteConfig.links.docs}
-          >
-            Documentation
-          </Link>
-          <Link
-            isExternal
-            className={buttonStyles({ variant: "bordered", radius: "full" })}
-            href={siteConfig.links.github}
-          >
-            <GithubIcon size={20} />
-            GitHub
-          </Link>
-        </div>
-
-        <div className="mt-8">
-          <Snippet hideCopyButton hideSymbol variant="bordered">
-            <span>
-              Get started by editing{" "}
-              <Code color="primary">pages/index.tsx</Code>
-            </span>
-          </Snippet>
-        </div>
-      </section>
-    </DefaultLayout>
+    <div className="index">
+      <div className="left">
+        <h1>Task Treasure</h1>
+        <Button onClick={() => navigate("/home")} color="primary">
+          Log In
+        </Button>
+        <p>Don't have an account?</p> <Link href="#">Sign Up</Link>
+      </div>
+      <div className="left">
+        <h1>About the app</h1>
+        <p>
+          Task Treasure is a task management app that helps you stay organized
+          and productive.
+        </p>
+      </div>
+    </div>
   );
 }
