@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nextui-org/button": "2.0.38",
+    "@nextui-org/checkbox": "^2.1.5",
     "@nextui-org/code": "2.0.33",
     "@nextui-org/dropdown": "^2.1.30",
     "@nextui-org/input": "2.2.5",

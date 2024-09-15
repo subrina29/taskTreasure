@@ -8,4 +8,19 @@
   grid-template-columns: 1fr 1fr;
   height: 100%;
   width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+.task-container-item-1 {
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  gap: 10px;
+}
+.task-container-item-2 {
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
 }
