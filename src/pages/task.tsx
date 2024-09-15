@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import { Tooltip } from "@nextui-org/tooltip";
 import "./task.css";
 
 const menuItems = ["Dashboard", "Tasks", "Logout"];
@@ -31,7 +32,7 @@ const TaskPage = () => {
     { id: "4", label: "Schedule team meeting", completed: false },
     { id: "5", label: "Prepare presentation", completed: false },
   ]);
-
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
   const handleCheckboxChange = (taskId: string) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
@@ -51,6 +52,25 @@ const TaskPage = () => {
       };
       setTasks([...tasks, newTask]);
       setNewTaskLabel("");
+    }
+  };
+
+  const handleDeleteTask = (taskId: string) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  };
+
+  const handleEditTask = (task: Task) => {
+    setEditingTask(task);
+  };
+
+  const handleSaveEdit = () => {
+    if (editingTask) {
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === editingTask.id ? { ...editingTask } : task
+        )
+      );
+      setEditingTask(null);
     }
   };
 
@@ -116,14 +136,51 @@ const TaskPage = () => {
           </div>
           <CheckboxGroup>
             {tasks.map((task) => (
-              <Checkbox
-                key={task.id}
-                value={task.id}
-                isSelected={task.completed}
-                onValueChange={() => handleCheckboxChange(task.id)}
-              >
-                {task.label}
-              </Checkbox>
+              <div key={task.id} className="flex items-center gap-2">
+                <Checkbox
+                  value={task.id}
+                  isSelected={task.completed}
+                  onValueChange={() => handleCheckboxChange(task.id)}
+                >
+                  {editingTask?.id === task.id ? (
+                    <Input
+                      value={editingTask.label}
+                      onChange={(e) =>
+                        setEditingTask({
+                          ...editingTask,
+                          label: e.target.value,
+                        })
+                      }
+                      className="ml-2"
+                    />
+                  ) : (
+                    task.label
+                  )}
+                </Checkbox>
+                <Tooltip
+                  content={editingTask?.id === task.id ? "Save" : "Edit"}
+                >
+                  <Button
+                    size="sm"
+                    onClick={() =>
+                      editingTask?.id === task.id
+                        ? handleSaveEdit()
+                        : handleEditTask(task)
+                    }
+                  >
+                    {editingTask?.id === task.id ? "Save" : "Edit"}
+                  </Button>
+                </Tooltip>
+                <Tooltip content="Delete">
+                  <Button
+                    size="sm"
+                    color="danger"
+                    onClick={() => handleDeleteTask(task.id)}
+                  >
+                    Delete
+                  </Button>
+                </Tooltip>
+              </div>
             ))}
           </CheckboxGroup>
         </div>
