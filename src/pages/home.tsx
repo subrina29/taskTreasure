@@ -16,6 +16,10 @@ const menuItems = ["Dashboard", "Tasks", "Logout"];
 const HomePage = () => {
 	const [tasks, setTasks] = useState(10);
 	const [completedTasks, setCompletedTasks] = useState(9);
+
+	console.log(setTasks);
+	console.log(setCompletedTasks);
+
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	return (
 		<div className="home">
@@ -58,7 +62,6 @@ const HomePage = () => {
 												? "/task"
 												: "#"
 									}
-									size="lg"
 								>
 									{item}
 								</Link>
