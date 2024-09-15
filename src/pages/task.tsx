@@ -11,14 +11,14 @@ import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./home.css";
-
+("");
 const menuItems = ["Dashboard", "Tasks", "Logout"];
 const TaskPage = () => {
   const [tasks, setTasks] = useState(10);
   const [completedTasks, setCompletedTasks] = useState(9);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className="home">
+    <div className="task">
       <div>
         <Navbar onMenuOpenChange={setIsMenuOpen}>
           <NavbarContent>
@@ -67,10 +67,11 @@ const TaskPage = () => {
           </NavbarMenu>
         </Navbar>
       </div>
-      <div className="task-completed">
-        <h1>Task Completed</h1>
+      <div className="task-container">
+        <h1>Daily Tasks</h1>
+
         <div>
-          {completedTasks} / {tasks}
+          <h1>Bonus Tasks</h1>
         </div>
       </div>
     </div>
